@@ -10,5 +10,10 @@ let newEmployee = [
     }
 ]
 function onReady() {
-    
+
+    $('#submitNewButton').on('click', SubmitNewEmployee);
+}
+
+function SubmitNewEmployee() {
+    console.log('hi');
 }
