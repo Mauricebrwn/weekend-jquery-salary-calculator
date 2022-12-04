@@ -1,47 +1,57 @@
 $(document).ready(onReady);
 
-const totalMonthly = 0;
 
-let Employee = [
-    {
-        name: 'Maurice',
-        last: 'Brown',
-        id: 1308,
-        title: 'General Manager',
-        annual: 65000
-    }
-]
+let employee = []
+
 function SubmitNewEmployee(){
     console.log('in SubmitNewEmployee');
 }
 
 function onReady() {
-    let el = $('#monthlyOut');
-    el.empty();
-    el.append(totalMonthly);
+   
     $('#submitNewButton').on('click', SubmitNewEmployee);
 }
 
 function render() {
     $('.newEmployee').empty();
-    for (let i = 0; i < Employee.length; i++) {
+    for (let i = 0; i < employee.length; i++) {
         $('.newEmployee').append(`
-        <li class="newEmployeeText">
-        <span class="nameText">${Employee[i].name}</span>: ${Employee[i].last}${Employee[i].id} ${Employee[i].title}${Employee[i].annual}
-        <button class="deleteEmployeeButton">Delete</button>
-        </li>
+        <tr>
+          <td id="newFirst">${employee[i].name}</td>
+          <td id="newLast">${employee[i].last}</td>
+          <td id="newId">${employee[i].id}</td>
+          <td id="newTitle">${employee[i].title}</td>
+          <td id="newAnnual">${employee[i].annual}</td>
+          <td><button class="Delete">Delete</button></td>
+        </tr>
         `)
-
-    
+  }
+  }
+function monthlySalary () {
+    let monthlyCost = 0;
+    let totalSalary = o; 
+    for (let i = 0; i<employee.length; i++){
+        totalSalary += employee[i].annual
     }
-}
+    monthlyCost = (totalSalary/12);
+    if(monthlyCost > 20000) {
+        $('#monthlyOut').empty();
+        $('#monthlyOut').append(`
+        <h3 id="monthlyOut">
+            <div id="red">
+            Monthly cost: ${monthlyCost}
+            </div>
+            </h3>
+        `);
+    }
+} 
 
 function SubmitNewEmployee() {
-    let newName = $('.newEmployee').val();
-    let newLast = $('.newEmployee').val();
-    let newId = $('.newEmployee').val();
-    let newTitle = $('.newEmployee').val();
-    let newAnnual = $('.newEmployee').val();
+    let newName = $('#firstNameInput').val();
+    let newLast = $('#lastNameInput').val();
+    let newId = $('#id').val();
+    let newTitle = $('#titleNameInput').val();
+    let newAnnual = $('#annualSalary').val();
 
     let newEmployee = {
         name: newName,
@@ -53,11 +63,15 @@ function SubmitNewEmployee() {
 }
 
      
-   Employee.push(newEmployee);
+   employee.push(newEmployee);
 
-   $('#newFirst').val('');
-   $('#newLast').val('');
-   $('#newId').val('');
-   $('#newTitle').val('');
-   $('#newAnnualSalary').val('');
+   render ();
+
+   $('#firstNameInput').val('');
+   $('#lastNameInput').val('');
+   $('#id').val('');
+   $('#titleNameInput').val('');
+   $('#annualSalary').val('');
 }
+
+
