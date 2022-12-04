@@ -6,10 +6,13 @@ let monthlySalary = 0
 
 
 function onReady() {
-// buttons and what they do!
+// submit new employee button
     $('#submitNewButton').on('click', SubmitNewEmployee);
+// delete employee button
     $('body').on('click',".Delete", deleteEmployee);
+// runs salary and converts to monthly on submit new employee click
     $('#submitNewButton').on('click', salaryTotal);
+// if salary goes over monthly total adds red background on submit click
     $('#submitNewButton').on('click', render);
 }
 //function to delete employees
@@ -18,9 +21,10 @@ function deleteEmployee (){
 }
 //function to render info and change css to red
 function render(){
-    if (monthlySalary>=20000){
+    if (monthlySalary>20000){
         $('h3').css('background-color','red')
     }
+//clears out input after each employee is submitted
     $('#firstNameInput').val('');
    $('#lastNameInput').val('');
    $('#id').val('');
@@ -33,7 +37,7 @@ function salaryTotal(){
     monthlySalary += yearlySalary / 12
     $("#monthlyOut").text(monthlySalary)
 } 
-//empties out inputs
+
 function SubmitNewEmployee() {
     let newName = $('#firstNameInput').val();
     let newLast = $('#lastNameInput').val();
