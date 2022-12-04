@@ -1,22 +1,22 @@
 $(document).ready(onReady);
 
-
+//open array and starting monthly salary
 let employee = []
 let monthlySalary = 0
 
 
 function onReady() {
-   
+// buttons and what they do!
     $('#submitNewButton').on('click', SubmitNewEmployee);
     $('body').on('click',".Delete", deleteEmployee);
     $('#submitNewButton').on('click', salaryTotal);
     $('#submitNewButton').on('click', render);
 }
-
+//function to delete employees
 function deleteEmployee (){
     $(this).parent().parent().remove()
 }
-
+//function to render info and change css to red
 function render(){
     if (monthlySalary>=20000){
         $('h3').css('background-color','red')
@@ -27,19 +27,20 @@ function render(){
    $('#titleNameInput').val('');
    $('#annualSalary').val('');
 }
+//function to convert yearly to monthly salary
 function salaryTotal(){
     let yearlySalary = $("#annualSalary").val()
     monthlySalary += yearlySalary / 12
     $("#monthlyOut").text(monthlySalary)
 } 
-
+//empties out inputs
 function SubmitNewEmployee() {
     let newName = $('#firstNameInput').val();
     let newLast = $('#lastNameInput').val();
     let newId = $('#id').val();
     let newTitle = $('#titleNameInput').val();
     let newAnnual = $('#annualSalary').val();
-
+//new object
     let newEmployee = {
         name: newName,
         last: newLast,
@@ -49,7 +50,7 @@ function SubmitNewEmployee() {
 
 }
 
-     
+//pushes new object into array
    employee.push(newEmployee);
    $('.newEmployee').empty();
    for (let i = 0; i < employee.length; i++) {
